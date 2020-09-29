@@ -14,6 +14,19 @@ class Tile{
 
     }
 
+    get width(){
+        return this.width;
+    }
+    get height(){
+        return this.height;
+    }
+
+    delete(){       //odstrani html element ze stranky
+
+        this.htmlObject.remove();
+        this.htmlObject = null;
+    }
+
 
 }
 
@@ -29,13 +42,31 @@ class ForestTile extends Tile{
 
 }
 
+class MountainTile extends Tile{
+    constructor(x, y){
+
+        super(x, y);
+        this.imageSrc = "./tiles/mountain.png";
+
+        this.htmlObject.src = this.imageSrc;
+        document.body.appendChild(this.htmlObject);
+    }
+
+}
+
+
 class Map{
 
     constructor(){
 
+        var tile0 = new ForestTile(1,1);
+        var width = tile0.width, height = tile0.height;
+        tile0.delete();
+
         for(var i = 0; i < 5; ++i){
 
-            var l = new ForestTile(100 * i, 100 * i);
+            var l = new ForestTile(70 + width * i * 1.01, 100);
+            var k = new MountainTile(120 + width * i, 180);
 
         }
 
