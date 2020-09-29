@@ -56,6 +56,26 @@ class MountainTile extends Tile{
 
 
 class Map{
+    mapArray = [];
+
+    createTile(proto, row, column){
+
+        var tile = proto;
+        this.appendTile(tile, row, column);
+
+    }
+
+    appendTile(tile, row, column){
+
+        if(this.mapArray[row] == undefined){
+
+            this.mapArray[row] = [];
+
+        }
+
+        this.mapArray[row][column] = tile;
+
+    }
 
     constructor(){
 
@@ -65,10 +85,16 @@ class Map{
 
         for(var i = 0; i < 5; ++i){
 
-            var l = new ForestTile(70 + width * i * 1.01, 100);
-            var k = new MountainTile(120 + width * i, 180);
+            /*this.appendTile( new ForestTile(70 + width * i, 100), 0, i);
+            this.appendTile(new MountainTile(120 + width * i, 180), 1, i);*/
+
+            this.createTile(ForestTile.prototype, 0, i);
 
         }
+
+        //this.appendTile(new ForestTile(70, 260), 3, 0);
+        console.log(ForestTile.prototype);
+        console.log(this.mapArray);
 
     }
 }
