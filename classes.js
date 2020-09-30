@@ -9,8 +9,9 @@ class Tile{
         this.htmlObject.style.width = this.width;
         this.htmlObject.style.height = this.height;
         this.htmlObject.style.position = "absolute";
-        this.htmlObject.style.left = x;
-        this.htmlObject.style.top = y;
+
+        if(x != undefined){ this.htmlObject.style.left = x; }
+        if(y != undefined){ this.htmlObject.style.top = y;  }
 
     }
 
@@ -19,6 +20,13 @@ class Tile{
     }
     get height(){
         return this.height;
+    }
+
+    move(x, y){
+
+        this.htmlObject.style.top = y;
+        this.htmlObject.style.left = x;
+
     }
 
     delete(){       //odstrani html element ze stranky
@@ -34,9 +42,10 @@ class ForestTile extends Tile{
     constructor(x, y){
 
         super(x, y);
-        this.imageSrc = "./tiles/forest.png";
 
+        this.imageSrc = "./tiles/forest.png";
         this.htmlObject.src = this.imageSrc;
+
         document.body.appendChild(this.htmlObject);
     }
 
@@ -46,9 +55,10 @@ class MountainTile extends Tile{
     constructor(x, y){
 
         super(x, y);
-        this.imageSrc = "./tiles/mountain.png";
 
+        this.imageSrc = "./tiles/mountain.png";
         this.htmlObject.src = this.imageSrc;
+
         document.body.appendChild(this.htmlObject);
     }
 
@@ -58,10 +68,14 @@ class MountainTile extends Tile{
 class Map{
     mapArray = [];
 
-    createTile(proto, row, column){
+    createTile(tileObject, row, column){
 
-        var tile = proto;
-        this.appendTile(tile, row, column);
+        var add = 0;
+        var y_offset = 3*tileObject.height / (2*(Math.sqrt(3) + 3)) - 8;
+        if(row % 2 == 1){   add += tileObject.width / 2;    }
+
+        tileObject.move(tileObject.width * column + add, tileObject.height * row - y_offset * row);
+        this.appendTile(tileObject, row, column);
 
     }
 
@@ -85,15 +99,16 @@ class Map{
 
         for(var i = 0; i < 5; ++i){
 
-            /*this.appendTile( new ForestTile(70 + width * i, 100), 0, i);
-            this.appendTile(new MountainTile(120 + width * i, 180), 1, i);*/
-
-            this.createTile(ForestTile.prototype, 0, i);
+            //this.appendTile( new ForestTile(70 + width * i, 100), 0, i);
+            this.createTile(new MountainTile, 1, i);
+            this.createTile(new MountainTile, 3, i);
+            this.createTile(new ForestTile, 2, i);
+            this.createTile(new ForestTile, 0, i);
 
         }
 
         //this.appendTile(new ForestTile(70, 260), 3, 0);
-        console.log(ForestTile.prototype);
+        console.log(ForestTile);
         console.log(this.mapArray);
 
     }
