@@ -3,6 +3,9 @@ class Tile{
     height = 80;
     width = this.height * Math.sqrt(3) / 2; //pravidelny sestiuhelnik
     htmlObject = null;
+    visible = true;
+
+
     constructor(x, y, imageSrc){
 
         this.htmlObject = document.createElement("img");
@@ -36,8 +39,23 @@ class Tile{
 
     delete(){       //odstrani html element ze stranky
 
+        this.unrender();
         this.htmlObject.remove();
         this.htmlObject = null;
+    }
+
+    render(){
+
+        this.visible = true;
+        this.htmlObject.style.display = 'initial';
+
+    }
+
+    unrender(){
+
+        this.visible = false;
+        this.htmlObject.style.display = 'none';
+
     }
 
 
@@ -55,6 +73,14 @@ class MountainTile extends Tile{
     constructor(x, y){
 
         super(x, y, "./tiles/mountain.png");
+    }
+
+}
+
+class OceanTile extends Tile{
+    constructor(x, y){
+
+        super(x, y, "./tiles/ocean.png");
     }
 
 }
@@ -99,6 +125,12 @@ class Map{
             this.createTile(new MountainTile, 3, i);
             this.createTile(new ForestTile, 2, i);
             this.createTile(new ForestTile, 0, i);
+
+        }
+
+        for(var j = 0; j < 5; ++j){
+
+            this.createTile(new OceanTile, j, 5);
 
         }
 
