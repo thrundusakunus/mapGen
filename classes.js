@@ -87,6 +87,15 @@ class OceanTile extends Tile{
 
 }
 
+class FieldTile extends Tile{
+    constructor(x, y){
+
+        super(x, y, "./tiles/field.png");
+    }
+
+}
+
+
 
 class Map{
     mapArray = [];
@@ -133,6 +142,7 @@ class Map{
         for(var j = 0; j < 5; ++j){
 
             this.createTile(new OceanTile, j, 5);
+            this.createTile(new FieldTile, j, 6);
 
         }
 
