@@ -1,9 +1,9 @@
 class Tile{
     imageSrc = null;
-    width = 100;
-    height = 100;
+    height = 80;
+    width = this.height * Math.sqrt(3) / 2; //pravidelny sestiuhelnik
     htmlObject = null;
-    constructor(x, y){
+    constructor(x, y, imageSrc){
 
         this.htmlObject = document.createElement("img");
         this.htmlObject.style.width = this.width;
@@ -12,6 +12,11 @@ class Tile{
 
         if(x != undefined){ this.htmlObject.style.left = x; }
         if(y != undefined){ this.htmlObject.style.top = y;  }
+
+        this.imageSrc = imageSrc;
+        this.htmlObject.src = this.imageSrc;
+
+        document.getElementById('mapDiv').appendChild(this.htmlObject);
 
     }
 
@@ -41,12 +46,7 @@ class Tile{
 class ForestTile extends Tile{
     constructor(x, y){
 
-        super(x, y);
-
-        this.imageSrc = "./tiles/forest.png";
-        this.htmlObject.src = this.imageSrc;
-
-        document.body.appendChild(this.htmlObject);
+        super(x, y, "./tiles/forest.png");
     }
 
 }
@@ -54,12 +54,7 @@ class ForestTile extends Tile{
 class MountainTile extends Tile{
     constructor(x, y){
 
-        super(x, y);
-
-        this.imageSrc = "./tiles/mountain.png";
-        this.htmlObject.src = this.imageSrc;
-
-        document.body.appendChild(this.htmlObject);
+        super(x, y, "./tiles/mountain.png");
     }
 
 }
@@ -71,10 +66,10 @@ class Map{
     createTile(tileObject, row, column){
 
         var add = 0;
-        var y_offset = 3*tileObject.height / (2*(Math.sqrt(3) + 3)) - 8;
+        var delta_y = tileObject.height - tileObject.width * Math.sqrt(3) / 6 - 1;
         if(row % 2 == 1){   add += tileObject.width / 2;    }
 
-        tileObject.move(tileObject.width * column + add, tileObject.height * row - y_offset * row);
+        tileObject.move(tileObject.width * column + add, delta_y * row);
         this.appendTile(tileObject, row, column);
 
     }
