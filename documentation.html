@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Documentation for mapGen</title>
+    </head>
+    <body>
+
+        <h1>Dokumentace</h1>
+        <h2>Abstract class Tile</h2>
+        <h3>Members</h3>
+        <ul>
+            <li><b>imageSrc</b> (string) ... <i>Cesta k obrázku políčka</i></li>
+            <li><b>height</b> (float) ... <i>Výška obrázku</i></li>
+            <li><b>width</b> (float) ... <i>Šířka obrázku</i></li>
+            <li><b>htmlObject</b> (DOM element) ... <i>Element html stránky, na který objekt <b>Tile</b> odkazuje</i></li>
+            <li><b>visible</b> (bool) ... <i>True, pokud je <b>htmlObject</b> renderovaný, jinak False</i></li>
+
+        </ul>
+
+        <h3>Methods</h3>
+        <ul>
+            <li><b>Tile</b>(int x, int y, string path) [Tile] ... <i>Vytvori objekt <b>Tile</b> na pozici (<b>x</b>, <b>y</b>) s <b>imageSrc</b> = <b>path</b></i></li>
+            <li><b>move</b>(int x, int y) [void]  ... <i>Presune <b>htmlObject</b> na pozici (<b>x</b>, <b>y</b>), pokud je <b>visible</b> == True</i></li>
+            <li><b>delete</b>() [void]  ... <i>Smaze <b>htmlObject</b></i></li>
+            <li><b>render</b>() [void]  ... <i>Vykresli <b>htmlObject</b></i></li>
+            <li><b>unrender</b>() []  ... <i>Schova <b>htmlObject</b> a zamezi jeho transformacim zmenou <b>visible</b></i></li>
+        </ul>
+
+        <h3>Parents</h3>
+        None
+
+        <h3>Children</h3>
+        <ul>
+            <li>OceanTile</li>
+            <li>ForestTile</li>
+            <li>MountainTile</li>
+        </ul>
+
+        <hr/>
+
+        <h2>Map</h2>
+
+        <h3>Members</h3>
+        <ul>
+            <li><b>mapArray</b> (Tile**) ... <i>2D pole obsahující rozmístění instance <b>Tile</b> na mapě</i></li>
+        </ul>
+
+        <h3>Methods</h3>
+        <ul>
+            <li><b>Map</b>() [Map]  ... <i>Generuje mapu</i></li>
+            <li><b>appendTile</b>(Tile tileObj, int row, int column) [void]  ... <i>Umisti <b>tileObj</b> do <b>mapArray</b>[<b>row</b>][<b>column</b>]</i></li>
+            <li><b>createTile</b>(Tile tileObj, int row, int column) [void]  ... <i>Presune <b>tileObj</b> na pozici odpovidajici (<b>column</b>, <b>row</b>) a zapise <b>tileObj</b> do <b>mapArray</b></i></li>
+        </ul>
+    </body>
+</html>

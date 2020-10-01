@@ -32,9 +32,11 @@ class Tile{
 
     move(x, y){
 
-        this.htmlObject.style.top = y;
-        this.htmlObject.style.left = x;
+        if(this.visible){
 
+            this.htmlObject.style.top = y;
+            this.htmlObject.style.left = x;
+        }
     }
 
     delete(){       //odstrani html element ze stranky
