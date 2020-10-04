@@ -5,7 +5,6 @@ function lagrangePolynomial(x_array, y_array){
         console.log("ERROR: lagrange_polynomial(x_array, y_array) --- different number of elements in arrays");
     }
 
-
     inner_function = (x, j, m, x_array) =>
     { return (x - x_array[m]) / (x_array[j] - x_array[m]);    };
 
@@ -19,7 +18,7 @@ function lagrangePolynomial(x_array, y_array){
         return output;
     };
 
-    lagrange_polynomial_function = (x, x_array, y_array) =>
+    lagrange_polynomial_function = (x) =>
     {
 
         var sum = 0;
