@@ -42,6 +42,17 @@ function lagrangePolynomial(x_array, y_array){
 
 }
 
+//prolozeni krivkou provedeno rucne
+function temperatureFit(){
+
+    var R_func = (x) =>
+    {   return y = 30.5 / (1 + Math.exp((x-44)/10.3)) - 3.2;    }
+
+    var func = (x) =>
+    {   return R_func(x) + R_func(-x) - 27; }
+    return func;
+}
+
 function definiteIntegral(func, x1, x2, steps){
 
     if(x1 > x2){
@@ -55,10 +66,9 @@ function definiteIntegral(func, x1, x2, steps){
     for(var i = x1; i < x2; i += step){
 
         sum += func(i) * step;
-        console.log("x: " + i + " f(x): " + func(i));
 
     }
-
+    console.log(sum/180);
     return sum;
 
 }
@@ -66,8 +76,9 @@ function definiteIntegral(func, x1, x2, steps){
 
 function getTemperatureDistribution(latitude_array, temperature_array, T_average_demanded){
 
-    baseTemperatureDist = lagrangePolynomial(latitude_array, temperature_array);
-    base_T_average = definiteIntegral(baseTemperatureDist, -90, 90, 18) / 180;
+    //baseTemperatureDist = lagrangePolynomial(latitude_array, temperature_array);
+    baseTemperatureDist = temperatureFit();
+    base_T_average = definiteIntegral(baseTemperatureDist, -90, 90, 180) / 180;
 
     temperatureDist = (x) => {  return baseTemperatureDist(x) + (T_average_demanded - base_T_average);  }
 
