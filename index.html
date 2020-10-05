@@ -1,4 +1,4 @@
-
+land_ratio
 <html>
 <head>
 
@@ -15,6 +15,29 @@ function writeValue(var_name){
 
     var value = Math.round( 100 * document.getElementById('range-' + var_name).value) / 100;
     document.getElementById('value-' + var_name).innerHTML = '<' + value + '>';
+
+}
+
+var map = null;
+
+function gen(){
+
+    var inputs = [];
+    inputs.push( document.getElementById('range-map_height').value );
+    inputs.push( document.getElementById('range-island_n').value );
+    inputs.push( document.getElementById('range-land_ratio').value );
+    inputs.push( document.getElementById('range-average_height').value );
+    inputs.push( document.getElementById('range-humidity').value );
+    inputs.push( document.getElementById('range-indentation').value );
+    inputs.push( document.getElementById('range-average_T').value );
+
+    if(map != null){
+
+        map.destroy();
+        map = null;
+    }
+    
+    map = new Map(inputs);
 
 }
 
@@ -48,7 +71,7 @@ function writeValue(var_name){
         <span id="value-average_T"><></span>
     </div>
 
-    <input type="button" value="Generuj" onClick="new Map();">
+    <input type="button" value="Generuj" onClick="gen();">
     <div style="position: absolute; top: 20%; left: 3%; border: solid 1px; width: 94%; height: 78%;" id="mapDiv"></div>
 
 </body>

@@ -7,15 +7,15 @@
 
         <h1>Dokumentace</h1>
         <hr/>
-        <h2>Public functions</h2>
+        <h2>Module math_functions.js</h2>
         <ul>
             <li><b>lagrangePolynomial</b>(float* x_array, float* y_array) [function(x)] ... <i>Vrati polynomalni funkci s takovymi koeficienty, aby body dane <b>x_array</b>, <b>y_array</b> nalezeli polynomu </i></li>
             <li><b>definiteIntegral</b>(funcion f(x), float x1, float x2, int steps) [float] ... <i>Vypocte urcity integral funkce <b>f(x)</b> v mezich <b>x1</b>, <b>x2</b> s presnosti <b>steps</b> kroku</i></li>
-            <li><b>getTemperatureDistribution</b>(float* latitude_array, float* temperature_array, float T_average) [function(x)] ... <i>Vrati polynomalni rozdeleni teploty v zavislosti na zemepisne sirce dle bodu danych <b>latitude_array</b>, <b>temperature_array</b> s prumernou teplotou <b>T_average</b></li>
+            <li><b>getTemperatureDistribution</b>(float* latitude_array, float* temperature_array, float T_average) [function(x)] ... <i>Vrati polynomalni rozdeleni teploty v zavislosti na zemepisne sirce dle bodu danych <b>latitude_array</b>, <b>temperature_array</b> s prumernou teplotou <b>T_average</b></i></li>
             <li><b>temperatureFit</b>() [function(x)] ... <i>Vrati rucne tvorenou funkci mapujici mezi zemepisnou sirkou a teplotou odpovidajici Zemi (chyba +-0.5 °C)</i></li>
         </ul>
         <hr/>
-        <h2>Abstract class Tile</h2>
+        <h2><i>Abstract class Tile</i></h2>
         <h3>Members</h3>
         <ul>
             <li><b>imageSrc</b> (string) ... <i>Cesta k obrazku policka</i></li>
@@ -44,6 +44,8 @@
             <li>ForestTile</li>
             <li>MountainTile</li>
             <li>FieldTile</li>
+            <li>DesertTile</li>
+            <li>IceTile</li>
         </ul>
 
         <hr/>
@@ -53,6 +55,14 @@
         <h3>Members</h3>
         <ul>
             <li><b>mapArray</b> (Tile**) ... <i>2D pole obsahujici rozmisteni instance <b>Tile</b> na mape</i></li>
+            <li><b>map_height</b> ... <i>Sirka mapy</i></li>
+            <li><b>island_n</b> ... <i>Pocet ostrovu</i></li>
+            <li><b>land_ratio</b> ... <i>Pomer souse a oceanu</i></li>
+            <li><b>average_height</b> ... <i>Prumerna nadmorska vyska</i></li>
+            <li><b>humidity</b> ... <i>Vlhkost</i></li>
+            <li><b>indentation</b> ... <i>Horizontalni clenitost</i></li>
+            <li><b>average_T</b> ... <i>Prumerna teplota</i></li>
+
         </ul>
 
         <h3>Methods</h3>
@@ -60,6 +70,8 @@
             <li><b>Map</b>() [Map]  ... <i>Generuje mapu</i></li>
             <li><b>appendTile</b>(Tile tileObj, int row, int column) [void]  ... <i>Umisti <b>tileObj</b> do <b>mapArray</b>[<b>row</b>][<b>column</b>]</i></li>
             <li><b>createTile</b>(Tile tileObj, int row, int column) [void]  ... <i>Presune <b>tileObj</b> na pozici odpovidajici (<b>column</b>, <b>row</b>) a zapise <b>tileObj</b> do <b>mapArray</b></i></li>
+            <li><b>destroy</b>() [void]  ... <i>Smaze vsechna Tiles v <b>mapArray</b></i></li>
+            <li><b>setValues</b>(float* input_array) [void]  ... <i>Nastavi prislusne promenne tohoto objektu dle hodnot v <b>input_array</b></i></li>
         </ul>
 
         <h3>Parents</h3>
