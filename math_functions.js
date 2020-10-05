@@ -68,7 +68,7 @@ function definiteIntegral(func, x1, x2, steps){
         sum += func(i) * step;
 
     }
-    console.log(sum/180);
+
     return sum;
 
 }

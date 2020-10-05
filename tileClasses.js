@@ -94,3 +94,19 @@ class FieldTile extends Tile{
     }
 
 }
+
+class IceTile extends Tile{
+    constructor(x, y){
+
+        super(x, y, "./tiles/ice.png");
+    }
+
+}
+
+class DesertTile extends Tile{
+    constructor(x, y){
+
+        super(x, y, "./tiles/desert.png");
+    }
+
+}

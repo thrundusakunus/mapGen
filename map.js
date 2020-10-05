@@ -32,9 +32,9 @@ class Map{
 
         var x_arr = [0,10,20,30,40,50,60,70,80,90,-10,-20,-30,-40,-50,-60,-70,-80, -90];
         var y_arr = [27,26,25,21,15,7,3,0,-2,-3,26,25,21,15,7,3,0,-2,-3];
-        //window.alert((lagrangePolynomial(x_arr,y_arr))(-86.4));
+
         var f = getTemperatureDistribution(x_arr, y_arr, 10);
-        window.alert(f(70));
+
 
         var tile0 = new ForestTile(1,1);
         var width = tile0.width, height = tile0.height;
@@ -52,12 +52,10 @@ class Map{
 
         for(var j = 0; j < 5; ++j){
 
-            this.createTile(new OceanTile, j, 5);
+            this.createTile(new DesertTile, j, 5);
             this.createTile(new FieldTile, j, 6);
 
         }
-
-        //this.appendTile(new ForestTile(70, 260), 3, 0);
         console.log(ForestTile);
         console.log(this.mapArray);
 
