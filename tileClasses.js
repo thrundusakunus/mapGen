@@ -1,3 +1,19 @@
+class ProtoTile{
+
+    row = null;
+    column = null;
+    height = 80;
+    width = this.height * Math.sqrt(3) / 2; //pravidelny sestiuhelnik
+
+    constructor(row, column){
+
+        this.row = row;
+        this.column = column;
+
+    }
+}
+
+
 class Tile{
     imageSrc = null;
     height = 80;

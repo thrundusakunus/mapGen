@@ -11,7 +11,7 @@
         <ul>
             <li><b>lagrangePolynomial</b>(float* x_array, float* y_array) [function(x)] ... <i>Vrati polynomalni funkci s takovymi koeficienty, aby body dane <b>x_array</b>, <b>y_array</b> nalezeli polynomu </i></li>
             <li><b>definiteIntegral</b>(funcion f(x), float x1, float x2, int steps) [float] ... <i>Vypocte urcity integral funkce <b>f(x)</b> v mezich <b>x1</b>, <b>x2</b> s presnosti <b>steps</b> kroku</i></li>
-            <li><b>getTemperatureDistribution</b>(float* latitude_array, float* temperature_array, float T_average) [function(x)] ... <i>Vrati polynomalni rozdeleni teploty v zavislosti na zemepisne sirce dle bodu danych <b>latitude_array</b>, <b>temperature_array</b> s prumernou teplotou <b>T_average</b></i></li>
+            <li><b>getTemperatureDistribution</b>(float T_average, <i>float* latitude_array, float* temperature_array</i>) [function(x)] ... <i>Vrati polynomalni rozdeleni teploty v zavislosti na zemepisne sirce dle bodu danych <b>latitude_array</b>, <b>temperature_array</b> s prumernou teplotou <b>T_average</b></i></li>
             <li><b>temperatureFit</b>() [function(x)] ... <i>Vrati rucne tvorenou funkci mapujici mezi zemepisnou sirkou a teplotou odpovidajici Zemi (chyba +-0.5 °C)</i></li>
         </ul>
         <hr/>

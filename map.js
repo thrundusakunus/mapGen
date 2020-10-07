@@ -1,6 +1,7 @@
 
 class Map{
     mapArray = [];
+    size_ratio = 4/3;
     map_height = null;
     island_n = null;
     land_ratio = null;
@@ -8,6 +9,9 @@ class Map{
     humidity = null;
     indentation = null;
     average_T = null;
+
+    map_width = null;
+    islands_array = [];
 
 
     createTile(tileObject, row, column){
@@ -38,6 +42,7 @@ class Map{
     destroy(){
 
         for(var i = 0; i < this.mapArray.length; ++i){
+            if(this.mapArray[i] == undefined){ continue;   }
             for(var j = 0; j < this.mapArray[i].length; ++j){
 
                 if(this.mapArray[i][j] != undefined){
@@ -59,17 +64,30 @@ class Map{
         this.indentation = input[5];
         this.average_T = input[6];
 
-
+        this.map_width = Math.floor( this.size_ratio * this.map_height );
     }
 
     constructor(inputs){
 
         this.setInputValues(inputs);
 
-        var x_arr = [0,10,20,30,40,50,60,70,80,90,-10,-20,-30,-40,-50,-60,-70,-80, -90];
-        var y_arr = [27,26,25,21,15,7,3,0,-2,-3,26,25,21,15,7,3,0,-2,-3];
+        var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
+        var x = Math.floor(Math.random()*this.map_width);
+        var y = Math.floor(Math.random()*this.map_height);
 
-        var f = getTemperatureDistribution(x_arr, y_arr, this.average_T);
+        var island = new Island(n_tiles, this.average_height, x, y);
+
+        for(var i = 0; i < this.map_width; ++i){
+                console.log(island.tiles[i]);
+                if(island.tiles[i] != undefined){
+
+                    this.createTile(new ForestTile, island.tiles[i].row, island.tiles[i].column);
+
+                }
+            }
+        console.log(island);
+
+        /*var f = getTemperatureDistribution(this.average_T);
         window.alert(f(90));
 
 
@@ -95,6 +113,6 @@ class Map{
         }
         console.log(ForestTile);
         console.log(this.mapArray);
-
+*/
     }
 }

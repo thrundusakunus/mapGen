@@ -74,7 +74,9 @@ function definiteIntegral(func, x1, x2, steps){
 }
 
 
-function getTemperatureDistribution(latitude_array, temperature_array, T_average_demanded){
+function getTemperatureDistribution(T_average_demanded,
+    latitude_array = [0,10,20,30,40,50,60,70,80,90,-10,-20,-30,-40,-50,-60,-70,-80, -90], 
+    temperature_array = [27,26,25,21,15,7,3,0,-2,-3,26,25,21,15,7,3,0,-2,-3]){
 
     //baseTemperatureDist = lagrangePolynomial(latitude_array, temperature_array);
     baseTemperatureDist = temperatureFit();
