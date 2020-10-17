@@ -72,8 +72,8 @@ class Map{
         this.setInputValues(inputs);
 
         var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
-        var x = Math.floor(Math.random()*this.map_width);
-        var y = Math.floor(Math.random()*this.map_height);
+        var x = mathematics.uniformRandomDiscrete(0, this.map_width);
+        var y = mathematics.uniformRandomDiscrete(0, this.map_height);
 
         var island = new Island(n_tiles, this.average_height, x, y);
 
@@ -87,7 +87,7 @@ class Map{
             }
         console.log(island);
 
-        /*var f = getTemperatureDistribution(this.average_T);
+        /*var f = mathematics.getTemperatureDistribution(this.average_T);
         window.alert(f(90));
 
 
