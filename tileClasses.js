@@ -5,12 +5,14 @@ class ProtoTile{
     height = 80;
     width = this.height * Math.sqrt(3) / 2; //pravidelny sestiuhelnik
     neighbours = [null, null, null, null, null] //NE, NW, W, SW, SE, E
+    index = null;
 
-    constructor(row, column, neighbours){
+    constructor(row, column, neighbours, index){
 
         this.row = row;
         this.column = column;
         this.neighbours = neighbours;
+        this.index = index;
 
     }
 }

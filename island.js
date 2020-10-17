@@ -23,14 +23,15 @@ class Island{
         for(var i = 0; i < len; ++i){
 
             var tile = this.tiles[i];
+            console.log(len + "   -   " + tile.row + ".." + row + " - " + tile.column + ".." + column);
             if(tile == undefined){  break;  }
 
-            if(tile.row + 1 == row && tile.column - 1 == column){   neighbours[0] = tile;   }
-            if(tile.row - 1 == row && tile.column - 1 == column){   neighbours[1] = tile;   }
-            if(tile.row - 1 == row && tile.column == column){   neighbours[2] = tile;   }
-            if(tile.row - 1 == row && tile.column + 1 == column){   neighbours[3] = tile;   }
-            if(tile.row + 1 == row && tile.column + 1 == column){   neighbours[4] = tile;   }
-            if(tile.row + 1 == row && tile.column - 1 == column){   neighbours[5] = tile;   }
+            if((tile.row + 1 == row) && ( tile.column - 1 == column)){   neighbours[0] = tile;   }
+            if((tile.row - 1 == row) && ( tile.column - 1 == column)){   neighbours[1] = tile;   }
+            if((tile.row - 1 == row) && ( tile.column == column)){   neighbours[2] = tile;   }
+            if((tile.row - 1 == row) && ( tile.column + 1 == column)){   neighbours[3] = tile;   }
+            if((tile.row + 1 == row) && ( tile.column + 1 == column)){   neighbours[4] = tile;   }
+            if((tile.row + 1 == row) && ( tile.column == column)){   neighbours[5] = tile;   }
 
         }
 
@@ -46,9 +47,8 @@ class Island{
 
             if(neighbours[i] != null){
 
-                var tile = neighbours[i];
                 var index = (i + 3) % 6;
-                tile.neighbours[index] = new_tile;
+                neighbours[i].neighbours[index] = new_tile;
 
             }
         }
@@ -71,7 +71,8 @@ class Island{
 
                 var new_tile_neighbours = this.findNeighbours(row, column);
 
-                var new_tile = new ProtoTile(row, column, new_tile_neighbours);
+                var new_tile = new ProtoTile(row, column, new_tile_neighbours, index);
+                console.log(new_tile_neighbours);
 
                 this.updateTileNeighbours(new_tile);
 
@@ -89,12 +90,11 @@ class Island{
         this.h_average = h_aver;
         this.row = row;
         this.column = column;
+        this.tiles.push( new ProtoTile(this.row, this.column, [null, null, null, null, null, null], 0 ));
 
-        this.tiles.push( new ProtoTile(this.row, this.column, [null, null, null, null, null, null]) );
-
-        for(var i = 1; i < N_tiles; ++i){
-
-
+        //for(var i = 1; i < N_tiles; ++i){
+        for(var i = 1; i < 7; ++i){
+            console.log(this.tiles);
             this.chooseNeighbourAndSide(i)
 
         }
