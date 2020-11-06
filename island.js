@@ -27,11 +27,11 @@ class Island{
             if(tile == undefined){  break;  }
 
             if((tile.row + 1 == row) && ( tile.column - 1 == column)){   neighbours[0] = tile;   }
-            if((tile.row - 1 == row) && ( tile.column - 1 == column)){   neighbours[1] = tile;   }
-            if((tile.row - 1 == row) && ( tile.column == column)){   neighbours[2] = tile;   }
-            if((tile.row - 1 == row) && ( tile.column + 1 == column)){   neighbours[3] = tile;   }
-            if((tile.row + 1 == row) && ( tile.column + 1 == column)){   neighbours[4] = tile;   }
-            if((tile.row + 1 == row) && ( tile.column == column)){   neighbours[5] = tile;   }
+            else if((tile.row - 1 == row) && ( tile.column - 1 == column)){   neighbours[1] = tile;   }
+            else if((tile.row - 1 == row) && ( tile.column == column)){   neighbours[2] = tile;   }
+            else if((tile.row - 1 == row) && ( tile.column + 1 == column)){   neighbours[3] = tile;   }
+            else if((tile.row + 1 == row) && ( tile.column + 1 == column)){   neighbours[4] = tile;   }
+            else if((tile.row + 1 == row) && ( tile.column == column)){   neighbours[5] = tile;   }
 
         }
 
@@ -66,8 +66,8 @@ class Island{
 
             if(neighbour.neighbours[side] == null){
 
-                var row = neighbour.row + ( (side > 0 && side < 5) ? -1 : 1 );  //vlevo nebo vpravo
-                var column = neighbour.column + ( (side == 0 || side == 1) ? -1 : ((side == 4 || side == 5) ? 1 : 0) );
+                var column = neighbour.column + ( (side > 0 && side < 4) ? -1 : 1 );  //vlevo nebo vpravo
+                var row = neighbour.row + ( (side == 0 || side == 1) ? -1 : ((side == 3 || side == 4) ? 1 : 0) );
 
                 var new_tile_neighbours = this.findNeighbours(row, column);
 
