@@ -35,10 +35,10 @@ class Island{
 
             if((tile.row + 1 == row) && ( tile.column - 1 == column)){   neighbours[0] = tile;   }
             if((tile.row + 1 == row) && ( tile.column + 1 == column)){   neighbours[1] = tile;   }
-            if((tile.row == row) && ( tile.column + 1 == column)){   neighbours[2] = tile;   }
+            if((tile.row == row) && ( tile.column + 2 == column)){   neighbours[2] = tile;   }
             if((tile.row - 1 == row) && ( tile.column + 1 == column)){   neighbours[3] = tile;   }
             if((tile.row - 1 == row) && ( tile.column - 1 == column)){   neighbours[4] = tile;   }
-            if((tile.row == row) && ( tile.column - 1 == column)){   neighbours[5] = tile;   }
+            if((tile.row == row) && ( tile.column - 2 == column)){   neighbours[5] = tile;   }
 
         }
 
@@ -78,9 +78,8 @@ class Island{
                 if(side == 0 || side == 4){ column += 1;    }
                 if(side == 5){ column += 2;    }
                 if(side == 1 || side == 3){ column -= 1;    }
-                if(side == 2){ column -= 2;    }  
+                if(side == 2){ column -= 2;    }
 
-                console.log(column + " # " + neighbour.column);
                 var row = neighbour.row + ( (side == 0 || side == 1) ? -1 : ((side == 3 || side == 4) ? 1 : 0) );
 
                 var new_tile_neighbours = this.findNeighbours(row, column);
@@ -111,6 +110,6 @@ class Island{
 
         }
 
-        window.alert(this.getPerimeter() + " # " + this.getArea());
+        console.log(this.getPerimeter() + " # " + this.getArea());
     }
 }
