@@ -15,6 +15,33 @@
             <li><b>temperatureFit</b>() [function(x)] ... <i>Vrati rucne tvorenou funkci mapujici mezi zemepisnou sirkou a teplotou odpovidajici Zemi (chyba +-0.5 °C)</i></li>
         </ul>
         <hr/>
+
+        <h2>class ProtoTile</h2>
+        <h3>Members</h3>
+        <ul>
+
+            <li><b>row</b> (int) ... <i>Radek v ramci objektu <b>Map</b></i></li>
+            <li><b>column</b> (int) ... <i>Sloupec v ramci objektu<b>Map</b></i></li>
+            <li><b>height</b> (float) ... <i>Vyska policka</i></li>
+            <li><b>width</b> (float) ... <i>Sirka policka</i></li>
+            <li><b>neighbours</b> (Tile*) ... <i>Pole obsahujici reference na okolni<b>Tiles</b>; index 0 znaci NE, index 1 NW, ... index 5 znaci E</i></li>
+            <li><b>index</b> (int) ... <i>Unikatni index <b>this</b> v ramci ostrova</i></li>
+
+        </ul>
+
+        <h3>Methods</h3>
+        <ul>
+            <li><b>ProtoTile</b>(int row, int column, Tile* neighbours, int index) [] ... <i>Vytvori objekt <b>ProtoTile</b></i></li>
+        </ul>
+
+        <h3>Parents</h3>
+        None
+
+        <h3>Children</h3>
+        None
+
+        <hr/>
+
         <h2><i>Abstract class Tile</i></h2>
         <h3>Members</h3>
         <ul>
@@ -33,6 +60,7 @@
             <li><b>delete</b>() [void]  ... <i>Smaze <b>htmlObject</b></i></li>
             <li><b>render</b>() [void]  ... <i>Vykresli <b>htmlObject</b></i></li>
             <li><b>unrender</b>() []  ... <i>Schova <b>htmlObject</b> a zamezi jeho transformacim zmenou <b>visible</b></i></li>
+            <li><b>resize</b>(float width, float height) [void]  ... <i>Zmeni velikost <b>htmlObject</b></i></li>
         </ul>
 
         <h3>Parents</h3>
@@ -55,13 +83,13 @@
         <h3>Members</h3>
         <ul>
             <li><b>mapArray</b> (Tile**) ... <i>2D pole obsahujici rozmisteni instance <b>Tile</b> na mape</i></li>
-            <li><b>map_height</b> ... <i>Sirka mapy</i></li>
-            <li><b>island_n</b> ... <i>Pocet ostrovu</i></li>
-            <li><b>land_ratio</b> ... <i>Pomer souse a oceanu</i></li>
-            <li><b>average_height</b> ... <i>Prumerna nadmorska vyska</i></li>
-            <li><b>humidity</b> ... <i>Vlhkost</i></li>
-            <li><b>indentation</b> ... <i>Horizontalni clenitost</i></li>
-            <li><b>average_T</b> ... <i>Prumerna teplota</i></li>
+            <li><b>map_height</b> (int) ... <i>Sirka mapy</i></li>
+            <li><b>island_n</b> (int) ... <i>Pocet ostrovu</i></li>
+            <li><b>land_ratio</b> (float) ... <i>Pomer souse a oceanu</i></li>
+            <li><b>average_height</b> (float) ... <i>Prumerna nadmorska vyska</i></li>
+            <li><b>humidity</b> (float) ... <i>Vlhkost</i></li>
+            <li><b>indentation</b> (float) ... <i>Horizontalni clenitost</i></li>
+            <li><b>average_T</b> (float) ... <i>Prumerna teplota</i></li>
 
         </ul>
 
@@ -79,5 +107,36 @@
 
         <h3>Children</h3>
         None
+
+        <hr/>
+
+
+
+
+
+        <h2>class Island</h2>
+
+        <h3>Members</h3>
+        <ul>
+            <li><b>tiles</b> (Tile*) ... <i>Pole obsahujici <b>Tiles</b> ostrova</i></li>
+            <li><b>row</b> (int) ... <i>Radek Seed Tile v <b>Map</b></i></li>
+            <li><b>column</b> (int) ... <i>Sloupec Seed Tile v <b>Map</b></i></li>
+            <li><b>n_tiles</b> (int) ... <i>Pocet <b>Tiles</b> ostrova</i></li>
+            <li><b>h_average</b> (float) ... <i>Prumerna nadmorska vyska ostrova</i></li>
+
+        </ul>
+
+        <h3>Methods</h3>
+        <ul>
+            <li><b>Island</b>(N_tiles, h_aver, row, column) [Island]  ... <i>Vytvori ostrov</i></li>
+            <li><b>getPerimeter</b>() [int]  ... <i>Vrati obvod ostrova</i></li>
+            <li><b>getArea</b>() [int]  ... <i>Vrati obsah ostrova</i></li>
+            <li><b>findNeighbours</b>(int row, int column) [Tiles*]  ... <i>Vrati sousedni <b>Tiles</b> policka na souradnicich <b>row</b>, <b>column</b></i></li>
+            <li><b>updateTileNeighbours</b>(Tile new_tile) [void]  ... <i>Zapise <b>new_tile</b> do <b>neighbours</b> sousednich policek</i></li>
+            <li><b>createTile</b>(int index) [void]  ... <i>Vytvori <b>Tile</b> s indexem <b>index</b> na vhodnych souradnicich</i></li>
+        </ul>
+
+
+
     </body>
 </html>

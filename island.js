@@ -62,7 +62,7 @@ class Island{
     }
 
 
-    chooseNeighbourAndSide(index){
+    createTile(index){
 
         while(this.tiles[index] == undefined){
 
@@ -106,7 +106,7 @@ class Island{
         //for(var i = 1; i < N_tiles; ++i){
         for(var i = 1; i < N_tiles; ++i){
 
-            this.chooseNeighbourAndSide(i)
+            this.createTile(i)
 
         }
 
