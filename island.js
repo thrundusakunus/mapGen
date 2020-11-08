@@ -97,14 +97,14 @@ class Island{
 
     constructor(N_tiles, h_aver, row, column){
 
-        this.n_tiles = 7;
+        this.n_tiles = N_tiles;
         this.h_average = h_aver;
         this.row = row;
         this.column = column;
         this.tiles.push( new ProtoTile(this.row, this.column, [null, null, null, null, null, null], 0 )); //prvni policko
 
         //for(var i = 1; i < N_tiles; ++i){
-        for(var i = 1; i < 7; ++i){
+        for(var i = 1; i < N_tiles; ++i){
 
             this.chooseNeighbourAndSide(i)
 

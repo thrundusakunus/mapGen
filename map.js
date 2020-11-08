@@ -85,7 +85,7 @@ class Map{
                 }
             }
         console.log(island);
-
+        console.log(document.getElementById('mapDiv').style.width);
         /*var f = mathematics.getTemperatureDistribution(this.average_T);
         window.alert(f(90));
 

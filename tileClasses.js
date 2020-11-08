@@ -80,7 +80,14 @@ class Tile{
 
     }
 
+    resize(width, height){
 
+        this.width = width;
+        this.height = height;
+        this.htmlObject.style.width = this.width;
+        this.htmlObject.style.height = this.height;
+
+    }
 }
 
 class ForestTile extends Tile{
