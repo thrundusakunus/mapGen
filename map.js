@@ -16,11 +16,11 @@ class Map{
 
     createTile(tileObject, row, column){
 
-        var add = 0;
+        var add = tileObject.width / 2;
         var delta_y = tileObject.height - tileObject.width * Math.sqrt(3) / 6 - 1;
-        if(row % 2 == 1){   add += tileObject.width / 2;    }
+        //if(row % 2 == 1){   add += tileObject.width / 2;    }
 
-        tileObject.move(tileObject.width * column + add, delta_y * row);
+        tileObject.move( (tileObject.width - add) * column , delta_y * row);
         this.appendTile(tileObject, row, column);
 
     }
@@ -72,13 +72,12 @@ class Map{
         this.setInputValues(inputs);
 
         var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
-        var x = mathematics.uniformRandomDiscrete(0, this.map_width);
-        var y = mathematics.uniformRandomDiscrete(0, this.map_height);
+        var column = mathematics.uniformRandomDiscrete(0, this.map_width);
+        var row = mathematics.uniformRandomDiscrete(0, this.map_height);
 
-        var island = new Island(n_tiles, this.average_height, x, y);
+        var island = new Island(n_tiles, this.average_height, row, column);
 
         for(var i = 0; i < this.map_width; ++i){
-                console.log(island.tiles[i]);
                 if(island.tiles[i] != undefined){
 
                     this.createTile(new ForestTile, island.tiles[i].row, island.tiles[i].column);
