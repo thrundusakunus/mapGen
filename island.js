@@ -4,6 +4,7 @@ class Island{
     column = null;
     n_tiles = null;
     h_average = null;
+    indentation = null;
 
     getPerimeter(){
 
@@ -95,12 +96,14 @@ class Island{
         }
     }
 
-    constructor(N_tiles, h_aver, row, column){
+    constructor(N_tiles, h_aver, row, column, indentation){
 
         this.n_tiles = N_tiles;
         this.h_average = h_aver;
         this.row = row;
         this.column = column;
+        this.indentation = indentation;
+
         this.tiles.push( new ProtoTile(this.row, this.column, [null, null, null, null, null, null], 0 )); //prvni policko
 
         //for(var i = 1; i < N_tiles; ++i){
@@ -111,5 +114,6 @@ class Island{
         }
 
         console.log(this.getPerimeter() + " # " + this.getArea());
+        //window.alert(mathematics.getPerimeterAreaRatio(this.indentation, this.n_tiles));
     }
 }

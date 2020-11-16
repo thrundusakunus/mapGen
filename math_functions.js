@@ -76,6 +76,14 @@ definiteIntegral(func, x1, x2, steps){
 },
 
 
+getPerimeterAreaRatio(indentation, n_tiles){
+
+    var log_output = Math.log( Math.E - 7/5 * (1 - indentation) );
+    var output = 2 * ( 1 / n_tiles + 2 * log_output );
+    return output;
+
+},
+
 getTemperatureDistribution(T_average_demanded,
     latitude_array = [0,10,20,30,40,50,60,70,80,90,-10,-20,-30,-40,-50,-60,-70,-80, -90],
     temperature_array = [27,26,25,21,15,7,3,0,-2,-3,26,25,21,15,7,3,0,-2,-3]){

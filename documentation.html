@@ -13,6 +13,7 @@
             <li><b>definiteIntegral</b>(funcion f(x), float x1, float x2, int steps) [float] ... <i>Vypocte urcity integral funkce <b>f(x)</b> v mezich <b>x1</b>, <b>x2</b> s presnosti <b>steps</b> kroku</i></li>
             <li><b>getTemperatureDistribution</b>(float T_average, <i>float* latitude_array, float* temperature_array</i>) [function(x)] ... <i>Vrati polynomalni rozdeleni teploty v zavislosti na zemepisne sirce dle bodu danych <b>latitude_array</b>, <b>temperature_array</b> s prumernou teplotou <b>T_average</b></i></li>
             <li><b>temperatureFit</b>() [function(x)] ... <i>Vrati rucne tvorenou funkci mapujici mezi zemepisnou sirkou a teplotou odpovidajici Zemi (chyba +-0.5 °C)</i></li>
+            <li><b>getPerimeterAreaRatio</b> (float indentation, int n_tiles) [float] ... <i>Vypocte pomer obvodu a obsahu ostrova na zaklade poctu policek ostrova <b>n_tiles</b> a parametru clenitosti <b>indentation</b></i></li>
         </ul>
         <hr/>
 
@@ -123,12 +124,13 @@
             <li><b>column</b> (int) ... <i>Sloupec Seed Tile v <b>Map</b></i></li>
             <li><b>n_tiles</b> (int) ... <i>Pocet <b>Tiles</b> ostrova</i></li>
             <li><b>h_average</b> (float) ... <i>Prumerna nadmorska vyska ostrova</i></li>
+            <li><b>indentation</b> (float) ... <i>Clenitost ostrova</i></li>
 
         </ul>
 
         <h3>Methods</h3>
         <ul>
-            <li><b>Island</b>(N_tiles, h_aver, row, column) [Island]  ... <i>Vytvori ostrov</i></li>
+            <li><b>Island</b>(N_tiles, h_aver, row, column, indentation) [Island]  ... <i>Vytvori ostrov</i></li>
             <li><b>getPerimeter</b>() [int]  ... <i>Vrati obvod ostrova</i></li>
             <li><b>getArea</b>() [int]  ... <i>Vrati obsah ostrova</i></li>
             <li><b>findNeighbours</b>(int row, int column) [Tiles*]  ... <i>Vrati sousedni <b>Tiles</b> policka na souradnicich <b>row</b>, <b>column</b></i></li>
