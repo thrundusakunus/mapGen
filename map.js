@@ -75,7 +75,7 @@ class Map{
         var column = mathematics.uniformRandomDiscrete(0, this.map_width);
         var row = mathematics.uniformRandomDiscrete(0, this.map_height);
 
-        var island = new Island(n_tiles, this.average_height, row, column, this.indentation);
+        var island = new Island(10, this.average_height, row, column, this.indentation);
 
         for(var i = 0; i < this.map_width; ++i){
                 if(island.tiles[i] != undefined){

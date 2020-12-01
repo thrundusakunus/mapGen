@@ -4,7 +4,7 @@ class ProtoTile{
     column = null;
     height = 80;
     width = this.height * Math.sqrt(3) / 2; //pravidelny sestiuhelnik
-    neighbours = [null, null, null, null, null, null] //NE, NW, W, SW, SE, E
+    neighbours = [null, null, null, null, null, null]; //NE, NW, W, SW, SE, E
     index = null;
 
     constructor(row, column, neighbours, index){
