@@ -30,7 +30,7 @@ class Island{
         var len = this.tiles.length;
         for(var i = 0; i < len; ++i){
 
-            if(this.tiles[i].row == row && this.tiles[i].column == column){ return this.tiles[i];   }
+            if( (this.tiles[i].row == row) && (this.tiles[i].column == column) ){ return this.tiles[i];   }
 
         }
     }
@@ -106,6 +106,7 @@ class Island{
         tile.row = row;
         tile.column = column;
 
+
         tile.neighbours = this.findNeighbours(row, column);
         this.updateSurroundingNeighbours(tile);
         this.updateTileInArray(tile);
@@ -116,6 +117,7 @@ class Island{
         return coordinates_matrix;
 
     }
+
 
     //DOC
     randomReshape(){
@@ -156,15 +158,16 @@ class Island{
         var new_ratio = this.getPerimeter() / this.getArea();
         var gradient = Math.sign(new_ratio - ratio);
 
-        window.alert("Pozadovany gradient: "+ desired_gradient + "; ziskany gradient: " + gradient);
+        //window.alert("Pozadovany gradient: "+ desired_gradient + "; ziskany gradient: " + gradient);
 
         //navrat do puvodniho stavu pokud zmena neni k lepsimu
         if(gradient != desired_gradient){
 
             var old_coord = coordinates_matrix[0];
             var new_coord = coordinates_matrix[1];
+            var moved_tile = this.getTileFromCoordinates(new_coord[0], new_coord[1]);
 
-            this.moveTile( this.getTileFromCoordinates(new_coord[0], new_coord[1]), old_coord[0], old_coord[1]);
+            this.moveTile(moved_tile, old_coord[0], old_coord[1]);
             return false;
 
         }
@@ -254,7 +257,7 @@ class Island{
             //window.alert(i);
             ratio = this.getPerimeter() / this.getArea();
 
-            window.alert(desired_ratio + " ale zatim jen " + ratio);
+            //window.alert(desired_ratio + " ale zatim jen " + ratio);
 
             if( (ratio >= desired_ratio - deviation) && (ratio <= desired_ratio + deviation) ){   break;  }
 
