@@ -78,8 +78,8 @@ definiteIntegral(func, x1, x2, steps){
 
 getPerimeterAreaRatio(indentation, n_tiles){
 
-    var log_output = Math.log( Math.E - 7/5 * (1 - indentation) );
-    var output = 2 * ( 1 / n_tiles + 2 * log_output );
+    var log_output = Math.log( Math.E - 6/5 * (1 - indentation) );
+    var output = 5/3 * ( 1 / n_tiles + 2 * log_output );
     return output;
 
 },

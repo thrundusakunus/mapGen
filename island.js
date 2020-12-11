@@ -118,6 +118,29 @@ class Island{
 
     }
 
+    //DOC
+    isContinuityBroken(tile){
+
+        var neighbours = tile.neighbours;
+        var occupied_sides = [];
+
+        for(var i = 0; i < 6; ++i){
+            if(neighbours[i] != null){  occupied_sides.push(i); }
+        }
+
+        var len = occupied_sides.length;
+        for(var i = 0; i < len; ++i){
+
+            var side = occupied_sides[i];
+            //nekde je "osamely" soused
+            if(!occupied_sides.includes((side + 1) % 6) && !occupied_sides.includes((side - 1) % 6) ){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     //DOC
     randomReshape(){
@@ -127,7 +150,7 @@ class Island{
         var array_len = this.tiles.length;
         var moved_tile_index = null;
 
-        while(this.tiles[moved_tile_index] == null){
+        while(this.tiles[moved_tile_index] == null || this.isContinuityBroken(this.tiles[moved_tile_index])){
 
             moved_tile_index = mathematics.uniformRandomDiscrete(0, array_len);
 
@@ -245,12 +268,12 @@ class Island{
     indentate(){
 
         var desired_ratio = mathematics.getPerimeterAreaRatio(this.indentation, this.n_tiles);
-        var efficient_iterations = 1000;
+        var effective_iterations = 100;
         var ratio = this.getPerimeter() / this.getArea();
         var deviation = 0.1;
         var i = 0;
 
-        while( i < efficient_iterations){
+        while( i < effective_iterations){
 
             var gradient = Math.sign(desired_ratio - ratio);
             if( this.tryRandomReshape(gradient) ){  ++i; }
