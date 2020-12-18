@@ -75,14 +75,14 @@ class Map{
         var column = mathematics.uniformRandomDiscrete(0, this.map_width);
         var row = mathematics.uniformRandomDiscrete(0, this.map_height);
 
-        var island = new Island(20, this.average_height, row, column, this.indentation);
+        var island = new Island(40, this.average_height, row, column, this.indentation);
 
         for(var i = 0; i < this.map_width; ++i){
-                if(island.tiles[i] != undefined){
+                //if(island.tiles[i] != undefined){
 
                     this.createTile(new ForestTile, island.tiles[i].row, island.tiles[i].column);
 
-                }
+                //}
             }
         console.log(island);
         console.log(document.getElementById('mapDiv').style.width);

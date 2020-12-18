@@ -145,25 +145,32 @@ class Island{
     //DOC
     randomReshape(){
 
-        var side = mathematics.uniformRandomDiscrete(0, 5);
+        var isOverlapingTile = true;
+        while(isOverlapingTile){
 
-        var array_len = this.tiles.length;
-        var moved_tile_index = null;
+            var side = mathematics.uniformRandomDiscrete(0, 5);
 
-        while(this.tiles[moved_tile_index] == null || this.isContinuityBroken(this.tiles[moved_tile_index])){
+            var array_len = this.tiles.length;
+            var moved_tile_index = null;
 
-            moved_tile_index = mathematics.uniformRandomDiscrete(0, array_len);
+            while(this.tiles[moved_tile_index] == null || this.isContinuityBroken(this.tiles[moved_tile_index])){
+
+                moved_tile_index = mathematics.uniformRandomDiscrete(0, array_len);
+
+            }
+
+            var new_neighbour_index = moved_tile_index;
+
+            while(new_neighbour_index == moved_tile_index || this.tiles[new_neighbour_index] == null){
+                new_neighbour_index = mathematics.uniformRandomDiscrete(0, array_len);
+            }
+
+            var moved_tile = this.tiles[moved_tile_index];
+            var new_neighbour = this.tiles[new_neighbour_index];
+
+            if(new_neighbour.neighbours[side] == null){ isOverlapingTile = false;   }
 
         }
-
-        var new_neighbour_index = moved_tile_index;
-
-        while(new_neighbour_index == moved_tile_index || this.tiles[new_neighbour_index] == null){
-            new_neighbour_index = mathematics.uniformRandomDiscrete(0, array_len);
-        }
-
-        var moved_tile = this.tiles[moved_tile_index];
-        var new_neighbour = this.tiles[new_neighbour_index];
 
         var coordinates = this.getPositionFromSideAndNeighbour(side, new_neighbour);
         return this.moveTile(moved_tile, coordinates[0], coordinates[1]);
@@ -268,15 +275,16 @@ class Island{
     indentate(){
 
         var desired_ratio = mathematics.getPerimeterAreaRatio(this.indentation, this.n_tiles);
-        var effective_iterations = 100;
+        var effective_iterations = 1000;
         var ratio = this.getPerimeter() / this.getArea();
         var deviation = 0.1;
         var i = 0;
 
         while( i < effective_iterations){
-
+            console.log(i);
             var gradient = Math.sign(desired_ratio - ratio);
-            if( this.tryRandomReshape(gradient) ){  ++i; }
+            this.tryRandomReshape(gradient);    //pridat if pro ++i jen pri vhodnem posunu
+            ++i;
             //window.alert(i);
             ratio = this.getPerimeter() / this.getArea();
 
