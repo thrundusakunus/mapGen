@@ -31,7 +31,7 @@ class Island{
         var len = this.tiles.length;
         for(var i = 0; i < len; ++i){
 
-            if(this.tiles[i].index = index){    return this.tiles[i];   }
+            if(this.tiles[i].index == index){   return this.tiles[i];   }
 
         }
         return null;
@@ -90,7 +90,7 @@ class Island{
 
         for(var i = 0; i < 6; ++i){
 
-            if(dropping_tile.neighbours[i] == dropped_tile){    dropping_tile.neighbours[i] = null; }
+            if(this.getTileFromIndex( dropping_tile.neighbours[i] ) == dropped_tile){    dropping_tile.neighbours[i] = null; }
         }
     }
 
@@ -101,7 +101,7 @@ class Island{
         for(var i = 0; i < 6; ++i){
             if(neighbours[i] != null){
 
-                var neighbour = neighbours[i];
+                var neighbour = this.getTileFromIndex( neighbours[i] );
                 this.dropTileFromNeighbour(tile, neighbour);
                 this.updateTileInArray(neighbour);
             }
@@ -228,14 +228,16 @@ class Island{
         for(var i = 0; i < len; ++i){
 
             var tile = this.tiles[i];
+            var tile_index = tile.index;
+
             if(tile == undefined){  break;  }
 
-            if((tile.row + 1 == row) && ( tile.column - 1 == column)){   neighbours[0] = tile;   }
-            if((tile.row + 1 == row) && ( tile.column + 1 == column)){   neighbours[1] = tile;   }
-            if((tile.row == row) && ( tile.column + 2 == column)){   neighbours[2] = tile;   }
-            if((tile.row - 1 == row) && ( tile.column + 1 == column)){   neighbours[3] = tile;   }
-            if((tile.row - 1 == row) && ( tile.column - 1 == column)){   neighbours[4] = tile;   }
-            if((tile.row == row) && ( tile.column - 2 == column)){   neighbours[5] = tile;   }
+            if((tile.row + 1 == row) && ( tile.column - 1 == column)){   neighbours[0] = tile_index;   }
+            if((tile.row + 1 == row) && ( tile.column + 1 == column)){   neighbours[1] = tile_index;   }
+            if((tile.row == row) && ( tile.column + 2 == column)){   neighbours[2] = tile_index;   }
+            if((tile.row - 1 == row) && ( tile.column + 1 == column)){   neighbours[3] = tile_index;   }
+            if((tile.row - 1 == row) && ( tile.column - 1 == column)){   neighbours[4] = tile_index;   }
+            if((tile.row == row) && ( tile.column - 2 == column)){   neighbours[5] = tile_index;   }
 
         }
 
@@ -252,7 +254,7 @@ class Island{
             if(neighbours[i] != null){
 
                 var index = (i + 3) % 6;
-                neighbours[i].neighbours[index] = new_tile;
+                this.getTileFromIndex( neighbours[i] ).neighbours[index] = new_tile.index;
 
             }
         }
@@ -279,7 +281,7 @@ class Island{
                 this.updateSurroundingNeighbours(new_tile);
 
                 this.tiles.push( new_tile);
-                neighbour.neighbours[side] = new_tile;
+                neighbour.neighbours[side] = new_tile.index;
 
             }
         }
