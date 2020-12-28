@@ -282,6 +282,7 @@ class Island{
 
                 this.tiles.push( new_tile);
                 neighbour.neighbours[side] = new_tile.index;
+                return [row, column];
 
             }
         }
@@ -316,7 +317,7 @@ class Island{
 
 
     constructor(N_tiles, h_aver, row, column, indentation){
-
+        var graphics = new Graphics;
         this.n_tiles = N_tiles;
         this.h_average = h_aver;
         this.row = row;
@@ -325,11 +326,10 @@ class Island{
 
         this.tiles.push( new ProtoTile(this.row, this.column, [null, null, null, null, null, null], 0 )); //prvni policko
 
-        //for(var i = 1; i < N_tiles; ++i){
         for(var i = 1; i < N_tiles; ++i){
 
-            this.createTile(i)
-
+            var coord = this.createTile(i);
+            setTimeout(graphics.createTile, 500*i, new ForestTile, coord[0], coord[1]);
         }
 
         this.indentate();

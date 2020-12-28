@@ -67,9 +67,9 @@ class Map{
 
         for(var i = 0; i < this.map_width; ++i){
                 //if(island.tiles[i] != undefined){
-                    var tile = new ForestTile;
+                    /*var tile = new ForestTile;
                     graphics.createTile(tile, island.tiles[i].row, island.tiles[i].column);
-                    this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);
+                    this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);*/
                 //}
             }
         console.log(island);
