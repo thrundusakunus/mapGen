@@ -14,18 +14,6 @@ class Map{
     islands_array = [];
 
 
-    createTile(tileObject, row, column){
-
-        var add = tileObject.width / 2;
-        var delta_y = tileObject.height - tileObject.width * Math.sqrt(3) / 6 - 1;
-        //if(row % 2 == 1){   add += tileObject.width / 2;    }
-
-        tileObject.move( (tileObject.width - add) * column , delta_y * row);
-        this.appendTile(tileObject, row, column);
-
-    }
-
-
     appendTile(tile, row, column){
 
         if(this.mapArray[row] == undefined){
@@ -37,7 +25,6 @@ class Map{
         this.mapArray[row][column] = tile;
 
     }
-
 
     destroy(){
 
@@ -69,6 +56,7 @@ class Map{
 
     constructor(inputs){
 
+        var graphics = new Graphics;
         this.setInputValues(inputs);
 
         var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
@@ -79,9 +67,9 @@ class Map{
 
         for(var i = 0; i < this.map_width; ++i){
                 //if(island.tiles[i] != undefined){
-
-                    this.createTile(new ForestTile, island.tiles[i].row, island.tiles[i].column);
-
+                    var tile = new ForestTile;
+                    graphics.createTile(tile, island.tiles[i].row, island.tiles[i].column);
+                    this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);
                 //}
             }
         console.log(island);
