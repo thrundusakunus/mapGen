@@ -5,6 +5,7 @@
 <title>Map</title>
 
 <script src="graphics.js"></script>
+<script src="debug.js"></script>
 <script src="tileClasses.js"></script>
 <script src="map.js"></script>
 <script src="math_functions.js"></script>
@@ -48,7 +49,7 @@ function gen(){
 </head>
 <body>
     <div style="float: left; width: 50%;">
-        výška mapy: 10<input oninput="writeValue('map_height');" type="range" min="10" max="40" value="20" step="1" id="range-map_height">40
+        výška mapy: 5<input oninput="writeValue('map_height');" type="range" min="5" max="20" value="10" step="1" id="range-map_height">20
         <span id="value-map_height"><></span>
         <br>
         Počet ostrovů: 1<input oninput="writeValue('island_n');" type="range" min="1" max="10" value="5" step="1" id="range-island_n">10

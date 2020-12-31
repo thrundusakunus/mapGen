@@ -63,14 +63,14 @@ class Map{
         var column = mathematics.uniformRandomDiscrete(0, this.map_width);
         var row = mathematics.uniformRandomDiscrete(0, this.map_height);
 
-        var island = new Island(40, this.average_height, row, column, this.indentation);
+        var island = new Island(n_tiles, this.average_height, row, column, this.indentation);
 
-        for(var i = 0; i < this.map_width; ++i){
-                //if(island.tiles[i] != undefined){
-                    /*var tile = new ForestTile;
+        for(var i = 0; i < n_tiles; ++i){
+                if(island.tiles[i] != undefined){
+                    var tile = new ForestTile;
                     graphics.createTile(tile, island.tiles[i].row, island.tiles[i].column);
-                    this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);*/
-                //}
+                    this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);
+                }
             }
         console.log(island);
         console.log(document.getElementById('mapDiv').style.width);

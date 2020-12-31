@@ -5,6 +5,7 @@ class Island{
     n_tiles = null;
     h_average = null;
     indentation = null;
+    debug = new Debug;
 
     getPerimeter(){
 
@@ -187,6 +188,11 @@ class Island{
         }
 
         var coordinates = this.getPositionFromSideAndNeighbour(side, new_neighbour);
+
+        //tohle nefunguje
+        /*this.debug.unrenderTileAfterTime(500, moved_tile);
+        this.debug.renderTileAfterTime(new ForestTile, 500, coordinates);*/
+
         return this.moveTile(moved_tile, coordinates[0], coordinates[1]);
 
     }
@@ -216,7 +222,7 @@ class Island{
 
         }
         else{
-;
+
             return true;    }
     }
 
@@ -329,7 +335,7 @@ class Island{
         for(var i = 1; i < N_tiles; ++i){
 
             var coord = this.createTile(i);
-            setTimeout(graphics.createTile, 500*i, new ForestTile, coord[0], coord[1]);
+            //this.debug.renderTileAfterTime(new ForestTile, 500, coord);
         }
 
         this.indentate();
