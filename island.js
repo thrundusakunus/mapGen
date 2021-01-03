@@ -148,7 +148,7 @@ class Island{
 
             var side = occupied_sides[i];
             //nekde je "osamely" soused
-            if(!occupied_sides.includes((side + 1) % 6) && !occupied_sides.includes((side - 1) % 6) ){
+            if(!occupied_sides.includes((side + 1) % 6) && !occupied_sides.includes((side + 5) % 6) ){  //to same jako side - 1, v js je modulo zapornych cisel divne
                 return true;
             }
         }
@@ -317,8 +317,6 @@ class Island{
 
         }
 
-        console.log("DESIRED: " + desired_ratio);
-        console.log("ACTUAL: " + ratio);
     }
 
 

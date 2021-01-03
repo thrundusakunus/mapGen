@@ -59,7 +59,8 @@ class Map{
         var graphics = new Graphics;
         this.setInputValues(inputs);
 
-        var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
+        var n_tiles = 15;
+        //Math.floor(this.map_height * this.map_width * this.land_ratio);
         var column = mathematics.uniformRandomDiscrete(0, this.map_width);
         var row = mathematics.uniformRandomDiscrete(0, this.map_height);
 

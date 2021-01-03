@@ -1,4 +1,6 @@
 1#  Ostrov se rozstepuje na mensi ostrovy pro indentation -> 1 a vysoka n_tiles
 2#  Policka se prekrivaji pro indentation -> 0
-3#  Pole policek ostrova obsahuje moc policek
 4#  Neighbours ne vzdy sedi 
+
+SOLVED
+3#  Pole policek ostrova obsahuje moc policek
