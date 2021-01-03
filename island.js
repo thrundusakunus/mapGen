@@ -138,9 +138,10 @@ class Island{
 
         var neighbours = tile.neighbours;
         var occupied_sides = [];
+        var unoccupied_sides = [];
 
         for(var i = 0; i < 6; ++i){
-            if(neighbours[i] != null){  occupied_sides.push(i); }
+            if(neighbours[i] != null){  occupied_sides.push(i); }else{  unoccupied_sides.push(i);   }
         }
 
         var len = occupied_sides.length;
@@ -152,6 +153,17 @@ class Island{
                 return true;
             }
         }
+
+        len = unoccupied_sides.length;
+        for(var i = 0; i < len; ++i){
+
+            var side = unoccupied_sides[i];
+            //nekde je "osamely" soused
+            if(unoccupied_sides.includes((side + 3) % 6)){
+                return true;
+            }
+        }
+
 
         return false;
     }
