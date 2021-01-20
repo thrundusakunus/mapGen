@@ -62,14 +62,22 @@ class Map{
         return new Island(n_tiles, this.average_height, row, column, this.indentation);
 
     }
+
+    chooseTile(protoTile){
+
+        return new FieldTile;
+
+    }
+
     //DOC
     appendIslandTiles(island, graphics){
 
+        var tile_chooser = new TileChooser();
         var n_tiles = island.n_tiles;
 
         for(var i = 0; i < n_tiles; ++i){
             if(island.tiles[i] != undefined){
-                var tile = new ForestTile;
+                var tile = tile_chooser.chooseTile(island.tiles[i]);
                 graphics.createTile(tile, island.tiles[i].row, island.tiles[i].column);
                 this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);
             }
