@@ -54,52 +54,38 @@ class Map{
         this.map_width = Math.floor( this.size_ratio * this.map_height );
     }
 
+    //DOC
+    createIsland(n_tiles){
+
+        var column = mathematics.uniformRandomDiscrete(0, this.map_width);
+        var row = mathematics.uniformRandomDiscrete(0, this.map_height);
+        return new Island(n_tiles, this.average_height, row, column, this.indentation);
+
+    }
+    //DOC
+    appendIslandTiles(island, graphics){
+
+        var n_tiles = island.n_tiles;
+
+        for(var i = 0; i < n_tiles; ++i){
+            if(island.tiles[i] != undefined){
+                var tile = new ForestTile;
+                graphics.createTile(tile, island.tiles[i].row, island.tiles[i].column);
+                this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);
+            }
+        }
+    }
+
+
     constructor(inputs){
 
         var graphics = new Graphics;
         this.setInputValues(inputs);
 
         var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
-        var column = mathematics.uniformRandomDiscrete(0, this.map_width);
-        var row = mathematics.uniformRandomDiscrete(0, this.map_height);
+        var island = this.createIsland(n_tiles);
 
-        var island = new Island(n_tiles, this.average_height, row, column, this.indentation);
+        this.appendIslandTiles(island, graphics);
 
-        for(var i = 0; i < n_tiles; ++i){
-                if(island.tiles[i] != undefined){
-                    var tile = new ForestTile;
-                    graphics.createTile(tile, island.tiles[i].row, island.tiles[i].column);
-                    this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);
-                }
-            }
-        console.log(island);
-        console.log(document.getElementById('mapDiv').style.width);
-        /*var f = mathematics.getTemperatureDistribution(this.average_T);
-        window.alert(f(90));
-
-
-        var tile0 = new ForestTile(1,1);
-        var width = tile0.width, height = tile0.height;
-        tile0.delete();
-
-        for(var i = 0; i < 5; ++i){
-
-            //this.appendTile( new ForestTile(70 + width * i, 100), 0, i);
-            this.createTile(new MountainTile, 1, i);
-            this.createTile(new MountainTile, 3, i);
-            this.createTile(new ForestTile, 2, i);
-            this.createTile(new ForestTile, 0, i);
-
-        }
-
-        for(var j = 0; j < 5; ++j){
-
-            this.createTile(new DesertTile, j, 5);
-            this.createTile(new FieldTile, j, 6);
-
-        }
-        console.log(ForestTile);
-        console.log(this.mapArray);
-*/
     }
 }

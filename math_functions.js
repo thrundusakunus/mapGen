@@ -1,5 +1,6 @@
 var mathematics = {
 
+//momentalne nepouzivano
 lagrangePolynomial(x_array, y_array){
 
     var len = x_array.length;
@@ -43,6 +44,7 @@ lagrangePolynomial(x_array, y_array){
     //return final_function;
 
 },
+
 
 //prolozeni krivkou provedeno rucne
 temperatureFit(){

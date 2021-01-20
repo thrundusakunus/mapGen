@@ -19,24 +19,10 @@ class Island{
         return perimeter;
     }
 
-    getArea(){
-
-        return this.n_tiles;
-
-    }
+    getArea(){    return this.n_tiles;  }
 
     //DOC
-    //REFACTOR ... mozna by stacilo vratit this.tiles[index], ale ted si nejsem jist
-    getTileFromIndex(index){
-
-        var len = this.tiles.length;
-        for(var i = 0; i < len; ++i){
-
-            if(this.tiles[i].index == index){   return this.tiles[i];   }
-
-        }
-        return null;
-    }
+    getTileFromIndex(index){    return this.tiles[index];   }
 
 
     //DOC
