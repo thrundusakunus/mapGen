@@ -310,7 +310,7 @@ class Island{
     indentate(){
 
         var desired_ratio = mathematics.getPerimeterAreaRatio(this.indentation, this.n_tiles);
-        var effective_iterations = 1000;
+        var effective_iterations = 100;
         var ratio = this.getPerimeter() / this.getArea();
         var deviation = 0.1;
         var i = 0;
