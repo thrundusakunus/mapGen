@@ -6,6 +6,8 @@ class Island{
     h_average = null;
     indentation = null;
     debug = new Debug;
+    bounds = null;  //DOC - pridano
+    invariant_matrix = [[0,0],[0,0]];
 
     getPerimeter(){
 
@@ -190,9 +192,13 @@ class Island{
         //tohle nefunguje
         /*this.debug.unrenderTileAfterTime(500, moved_tile);
         this.debug.renderTileAfterTime(new ForestTile, 500, coordinates);*/
+        if(this.areCoordInBounds(coordinates[0], coordinates[0])){
+            return this.moveTile(moved_tile, coordinates[0], coordinates[1]);
+        }
+        else{
 
-        return this.moveTile(moved_tile, coordinates[0], coordinates[1]);
-
+            return this.invariant_matrix;
+        }
     }
 
 
@@ -208,8 +214,9 @@ class Island{
 
         //window.alert("Pozadovany gradient: "+ desired_gradient + "; ziskany gradient: " + gradient);
 
+        if(coordinates_matrix === this.invariant_matrix){   return false;  }
         //navrat do puvodniho stavu pokud zmena neni k lepsimu
-        if(gradient != desired_gradient){
+        else if(gradient != desired_gradient){
 
             var old_coord = coordinates_matrix[0];
             var new_coord = coordinates_matrix[1];
@@ -264,6 +271,16 @@ class Island{
         }
     }
 
+    //DOC
+    areCoordInBounds(row, column){
+
+         if( (0 <= row) && (row < this.bounds.height)
+         && (0 <= column) && (column < this.bounds.width) )
+         {     return true; }
+
+         return false;
+    }
+
 
     createTile(index){
 
@@ -278,16 +295,19 @@ class Island{
 
                 var column = neighbour.column + this.sideColumnModifier(side);
                 var row = neighbour.row + this.sideRowModifier(side);
-                var new_tile_neighbours = this.findNeighbours(row, column);
 
-                var new_tile = new ProtoTile(row, column, new_tile_neighbours, index);
+                if(this.areCoordInBounds(row, column)){
 
-                this.updateSurroundingNeighbours(new_tile);
+                    var new_tile_neighbours = this.findNeighbours(row, column);
 
-                this.tiles.push( new_tile);
-                neighbour.neighbours[side] = new_tile.index;
-                return [row, column];
+                    var new_tile = new ProtoTile(row, column, new_tile_neighbours, index);
 
+                    this.updateSurroundingNeighbours(new_tile);
+
+                    this.tiles.push( new_tile);
+                    neighbour.neighbours[side] = new_tile.index;
+                    return [row, column];
+                }
             }
         }
     }
@@ -302,7 +322,7 @@ class Island{
         var i = 0;
 
         while( i < effective_iterations){
-            console.log(i);
+
             var gradient = Math.sign(desired_ratio - ratio);
             this.tryRandomReshape(gradient);    //pridat if pro ++i jen pri vhodnem posunu
             ++i;
@@ -317,14 +337,15 @@ class Island{
 
     }
 
-
-    constructor(N_tiles, h_aver, row, column, indentation){
+    //DOC - zastarale
+    constructor(N_tiles, h_aver, row, column, indentation, map_width, map_height){
         var graphics = new Graphics;
         this.n_tiles = N_tiles;
         this.h_average = h_aver;
         this.row = row;
         this.column = column;
         this.indentation = indentation;
+        this.bounds = {width: map_width, height: map_height};
 
         this.tiles.push( new ProtoTile(this.row, this.column, [null, null, null, null, null, null], 0 )); //prvni policko
 

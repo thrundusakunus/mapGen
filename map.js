@@ -59,7 +59,7 @@ class Map{
 
         var column = mathematics.uniformRandomDiscrete(0, this.map_width);
         var row = mathematics.uniformRandomDiscrete(0, this.map_height);
-        return new Island(n_tiles, this.average_height, row, column, this.indentation);
+        return new Island(n_tiles, this.average_height, row, column, this.indentation, this.map_width, this.map_height);
 
     }
 
@@ -69,6 +69,35 @@ class Map{
 
     }
 
+    /*getLattitudeFromCoord(row, column){
+
+
+
+    }*/
+
+
+/*    //DOC
+    correctIndex(index, upper_bound){
+        console.log(upper_bound);
+        if(index >= 0)
+        { return index % upper_bound; }
+
+        if(index < 0)
+        {  return upper_bound - ((-1*index) % upper_bound);    }
+        return index
+
+    }
+
+    //DOC
+    correctCoordinates(row, column){
+
+        var new_row = this.correctIndex(row, this.map_height);
+        var new_column = this.correctIndex(column, this.map_width);
+
+        return [new_row, new_column];
+
+    }*/
+
     //DOC
     appendIslandTiles(island, graphics){
 
@@ -77,9 +106,16 @@ class Map{
 
         for(var i = 0; i < n_tiles; ++i){
             if(island.tiles[i] != undefined){
+
+                /*var coord = this.correctCoordinates(island.tiles[i].row, island.tiles[i].column);
+                island.tiles[i].row = coord[0];
+                island.tiles[i].column = coord[1];*/
+                var coord = [island.tiles[i].row, island.tiles[i].column];
+
                 var tile = tile_chooser.chooseTile(island.tiles[i]);
-                graphics.createTile(tile, island.tiles[i].row, island.tiles[i].column);
-                this.appendTile(tile, island.tiles[i].row, island.tiles[i].column);
+
+                graphics.createTile(tile, coord[0], coord[1]);
+                this.appendTile(tile, coord[0], coord[1]);
             }
         }
     }
@@ -94,6 +130,7 @@ class Map{
         var island = this.createIsland(n_tiles);
 
         this.appendIslandTiles(island, graphics);
+        console.log(island);
 
     }
 }
