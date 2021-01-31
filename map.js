@@ -1,7 +1,7 @@
 
 class Map{
     mapArray = [];
-    size_ratio = 4/3;
+    size_ratio = 10/3;
     map_height = null;
     island_n = null;
     land_ratio = null;

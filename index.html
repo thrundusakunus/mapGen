@@ -21,7 +21,9 @@ function writeValue(var_name){
 
 }
 
+var is_map_movable = false;
 var map = null;
+var myWindow = new GraphicsWindow();
 
 function gen(){
 
@@ -44,6 +46,32 @@ function gen(){
 
 }
 
+var x0 = null;
+var y0 = null;
+
+function mouseMove(event){
+    if(is_map_movable){
+
+        var x1 = event.clientX;
+        var y1 = event.clientY;
+
+        vector = [x1 - x0, y1 - y0];
+        myWindow.update(vector);
+
+        x0 = x1;
+        y0 = y1;
+    }
+}
+
+function mouseDown(event){
+
+    is_map_movable = true;
+    x0 = event.clientX;
+    y0 = event.clientY;
+
+}
+
+function mouseUp(){ is_map_movable = false;   }
 </script>
 
 
@@ -75,7 +103,8 @@ function gen(){
     </div>
 
     <input type="button" value="Generuj" onClick="gen();">
-    <div style="position: relative; top: 20%; left: 3%; border: solid 1px; width: 94%; height: 78%;" id="mapDiv"></div>
+    <div onmousedown="mouseDown(event);" onmouseup="mouseUp();" onmousemove="mouseMove(event);"
+    style="position: relative; top: 20%; left: 3%; border: solid 1px; width: 94%; height: 78%;" id="mapDiv"></div>
 
 </body>
 </html>

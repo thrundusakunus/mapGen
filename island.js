@@ -164,8 +164,9 @@ class Island{
         while(isOverlapingTile){
 
             var side = mathematics.uniformRandomDiscrete(0, 5);
-
             var array_len = this.tiles.length;
+
+
             var moved_tile_index = null;
 
             while(this.tiles[moved_tile_index] == null || this.isContinuityBroken(this.tiles[moved_tile_index])){
@@ -174,11 +175,13 @@ class Island{
 
             }
 
+
             var new_neighbour_index = moved_tile_index;
 
             while(new_neighbour_index == moved_tile_index || this.tiles[new_neighbour_index] == null){
                 new_neighbour_index = mathematics.uniformRandomDiscrete(0, array_len);
             }
+
 
             var moved_tile = this.tiles[moved_tile_index];
             var new_neighbour = this.tiles[new_neighbour_index];
@@ -189,9 +192,7 @@ class Island{
 
         var coordinates = this.getPositionFromSideAndNeighbour(side, new_neighbour);
 
-        //tohle nefunguje
-        /*this.debug.unrenderTileAfterTime(500, moved_tile);
-        this.debug.renderTileAfterTime(new ForestTile, 500, coordinates);*/
+
         if(this.areCoordInBounds(coordinates[0], coordinates[0])){
             return this.moveTile(moved_tile, coordinates[0], coordinates[1]);
         }

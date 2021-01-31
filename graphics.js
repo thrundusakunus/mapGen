@@ -1,3 +1,4 @@
+//DOC
 class Graphics{
 
     createTile(tileObject, row, column){
@@ -11,5 +12,22 @@ class Graphics{
     }
 
 
+
+}
+
+//DOC
+class GraphicsWindow{
+
+    constructor(){
+
+
+
+    }
+
+    update(translate_vector){
+
+        
+
+    }
 
 }
