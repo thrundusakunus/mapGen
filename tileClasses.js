@@ -20,10 +20,14 @@ class Tile{
     imageSrc = null;
     htmlObject = null;
     visible = true;
+    x = null;
+    y = null;
 
 
     constructor(x, y, imageSrc){
 
+        this.x = x;
+        this.y = y;
         this.htmlObject = document.createElement("img");
         this.htmlObject.style.position = "absolute";
 
@@ -32,6 +36,8 @@ class Tile{
 
         this.imageSrc = imageSrc;
         this.htmlObject.src = this.imageSrc;
+        this.htmlObject.classList.add("selectDisable");
+        this.htmlObject.style.zIndex = "-1";
 
         document.getElementById('mapDiv').appendChild(this.htmlObject);
 
@@ -41,6 +47,13 @@ class Tile{
 
         this.htmlObject.style.width = width;
         this.htmlObject.style.height = height;
+
+    }
+
+    setCoord(x,y){
+
+        this.x = x;
+        this.y = y;
 
     }
 

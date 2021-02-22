@@ -12,6 +12,20 @@
 <script src="tile_chooser.js"></script>
 <script src="island.js"></script>
 
+<style>
+
+
+.selectDisable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+</style>
+
+
 <script language="javascript">
 
 function writeValue(var_name){
@@ -24,6 +38,7 @@ function writeValue(var_name){
 var is_map_movable = false;
 var map = null;
 var myWindow = null;
+var graphics = null;
 
 function gen(){
 
@@ -42,7 +57,7 @@ function gen(){
         map = null;
     }
 
-    map = new Map(inputs);
+    map = new Map(inputs, graphics);
 }
 
 var x0 = null;
@@ -74,7 +89,8 @@ function mouseUp(){ is_map_movable = false;   }
 
 function load(){
 
-    myWindow = new GraphicsWindow();
+    graphics = new Graphics();
+    myWindow = new GraphicsWindow(graphics);
 
 }
 </script>
@@ -109,7 +125,7 @@ function load(){
 
     <input type="button" value="Generuj" onClick="gen();">
     <div onmousedown="mouseDown(event);" onmouseup="mouseUp();" onmousemove="mouseMove(event);"
-    style="position: relative; top: 20%; left: 3%; border: solid 1px; width: 94%; height: 78%;" id="mapDiv"></div>
+    style="position: relative; overflow: hidden; z-index: 10; top: 20%; left: 3%; border: solid 1px; width: 94%; height: 78%;" id="mapDiv"></div>
 
 </body>
 </html>

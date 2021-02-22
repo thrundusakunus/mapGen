@@ -121,12 +121,12 @@ class Map{
     }
 
 
-    constructor(inputs){
+    constructor(inputs, graphics){
 
-        var graphics = new Graphics;
         this.setInputValues(inputs);
 
-        var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
+        //var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
+        var n_tiles = 40;
         var island = this.createIsland(n_tiles);
 
         this.appendIslandTiles(island, graphics);
