@@ -2,8 +2,6 @@ class ProtoTile{
 
     row = null;
     column = null;
-    height = 80;
-    width = this.height * Math.sqrt(3) / 2; //pravidelny sestiuhelnik
     neighbours = [null, null, null, null, null, null]; //NE, NW, W, SW, SE, E
     index = null;
 
@@ -17,11 +15,9 @@ class ProtoTile{
     }
 }
 
-
+//OBSOLETE DOC
 class Tile{
     imageSrc = null;
-    height = 80;
-    width = this.height * Math.sqrt(3) / 2; //pravidelny sestiuhelnik
     htmlObject = null;
     visible = true;
 
@@ -29,8 +25,6 @@ class Tile{
     constructor(x, y, imageSrc){
 
         this.htmlObject = document.createElement("img");
-        this.htmlObject.style.width = this.width;
-        this.htmlObject.style.height = this.height;
         this.htmlObject.style.position = "absolute";
 
         if(x != undefined){ this.htmlObject.style.left = x; }
@@ -43,11 +37,11 @@ class Tile{
 
     }
 
-    get width(){
-        return this.width;
-    }
-    get height(){
-        return this.height;
+    resize(width, height){
+
+        this.htmlObject.style.width = width;
+        this.htmlObject.style.height = height;
+
     }
 
     move(x, y){
