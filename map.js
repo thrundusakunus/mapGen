@@ -125,6 +125,7 @@ class Map{
 
         this.setInputValues(inputs);
         graphics.hexagon_map_width = this.map_width * graphics.hexagon_width;
+        graphics.hexagon_map_height = this.map_height * graphics.hexagon_height;
 
         //var n_tiles = Math.floor(this.map_height * this.map_width * this.land_ratio);
         var n_tiles = 40;

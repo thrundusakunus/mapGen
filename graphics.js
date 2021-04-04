@@ -6,6 +6,7 @@ class Graphics{
     y_offset = this.hexagon_height - this.hexagon_width * Math.sqrt(3) / 6 - 1;
     my_tiles = [];
     hexagon_map_width = null;
+    hexagon_map_height = null;
 
 
     createTile(tileObject, row, column){
@@ -103,7 +104,13 @@ class GraphicsWindow{
 
         var k = 1;
         this.x1 += Math.round(k * translate_vector[0]);
-        this.y1 += Math.round(k * translate_vector[1]); //pridat k y hranici kdy ne!
+
+        if( Math.round(k * translate_vector[1]) + this.y1 > 0 &&
+          Math.round(k * translate_vector[1]) + this.y2 < graphics.hexagon_map_height){
+
+            this.y1 += Math.round(k * translate_vector[1]);
+        }
+
         this.recalcSecondaryCoord();
         this.transformToCyclic();
 
@@ -133,8 +140,5 @@ class GraphicsWindow{
 
 
         }else{console.log("???")}
-
-
     }
-
 }
