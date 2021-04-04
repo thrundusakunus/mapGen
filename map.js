@@ -58,7 +58,9 @@ class Map{
     createIsland(n_tiles){
 
         var column = mathematics.uniformRandomDiscrete(0, this.map_width);
+        do{
         var row = mathematics.uniformRandomDiscrete(0, this.map_height);
+      }while((row+column) % 2 == 0);
         return new Island(n_tiles, this.average_height, row, column, this.indentation, this.map_width, this.map_height);
 
     }
@@ -120,6 +122,20 @@ class Map{
         }
     }
 
+    appendOcean(graphics){
+
+      for(var row = 0; row < this.map_height; ++row){
+        for(var col = 0; col < this.map_width; ++col){
+
+          if(this.mapArray[row] == undefined){ this.mapArray[row] = []; }
+          if(this.mapArray[row][col] == undefined && (row+col) % 2 == 1){
+            var tile = new OceanTile;
+            graphics.createTile(tile, row, col);
+            this.appendTile(tile, row, col);
+          }
+        }
+      }
+    }
 
     constructor(inputs, graphics){
 
@@ -132,6 +148,7 @@ class Map{
         var island = this.createIsland(n_tiles);
 
         this.appendIslandTiles(island, graphics);
+        this.appendOcean(graphics);
         console.log(island);
 
     }

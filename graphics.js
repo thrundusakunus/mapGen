@@ -1,7 +1,7 @@
 //DOC
 class Graphics{
 
-    hexagon_height = 60;
+    hexagon_height = 100;
     hexagon_width = this.hexagon_height * Math.sqrt(3) / 2;
     y_offset = this.hexagon_height - this.hexagon_width * Math.sqrt(3) / 6 - 1;
     my_tiles = [];
@@ -94,7 +94,7 @@ class GraphicsWindow{
 
       if( (this.x1 > this.graphics.hexagon_map_width && this.x2 > this.graphics.hexagon_map_width)
       || (this.x1 < 0 && this.x2 < 0) ){
-        console.log("TED");
+
         this.x1 -= Math.sign(this.x1) * this.graphics.hexagon_map_width;
         this.x2 -= Math.sign(this.x2) * this.graphics.hexagon_map_width;
       }
