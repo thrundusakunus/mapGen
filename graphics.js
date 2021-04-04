@@ -5,6 +5,8 @@ class Graphics{
     hexagon_width = this.hexagon_height * Math.sqrt(3) / 2;
     y_offset = this.hexagon_height - this.hexagon_width * Math.sqrt(3) / 6 - 1;
     my_tiles = [];
+    hexagon_map_width = null;
+
 
     createTile(tileObject, row, column){
 
@@ -15,7 +17,16 @@ class Graphics{
 
     }
 
-    render(coord_matrix){
+    isInBoundaries(x, y, coord_matrix){
+
+      if( (coord_matrix[0][0] < (this.hexagon_width+x)) && (x < coord_matrix[1][0])
+          && (coord_matrix[0][1] < (this.hexagon_height+y)) && (y < coord_matrix[1][1]) )
+      { return true;  }
+      else{ return false;  }
+
+    }
+
+    render(coord_matrix_1, coord_matrix_2 = [[0,0],[0,0]]){
 
         var my_tiles_len = this.my_tiles.length;
         for(var i=0; i < my_tiles_len; ++i){
@@ -25,11 +36,16 @@ class Graphics{
             var y = tile.y;
             /*console.log(coord_matrix);
             console.log([x,y]);*/
-            if( (coord_matrix[0][0] < (this.hexagon_width+x)) && (x < coord_matrix[1][0])
-                && (coord_matrix[0][1] < (this.hexagon_height+y)) && (y < coord_matrix[1][1])){
+            if( this.isInBoundaries(x, y, coord_matrix_1) ){
 
                 tile.render();
-                tile.move(x - coord_matrix[0][0], y - coord_matrix[0][1]);
+                tile.move(x - coord_matrix_1[0][0], y - coord_matrix_1[0][1]);
+            }else if( this.isInBoundaries(x, y, coord_matrix_2) ){
+
+                tile.render();
+                //aby fungoval pohyb zleva doprava
+                tile.move(x - coord_matrix_2[0][0] + coord_matrix_1[1][0] - coord_matrix_1[0][0], y - coord_matrix_2[0][1]);
+
             }else{
                 tile.unrender();
             }
@@ -72,17 +88,53 @@ class GraphicsWindow{
 
     }
 
+    transformToCyclic(){
+
+
+      if( (this.x1 > this.graphics.hexagon_map_width && this.x2 > this.graphics.hexagon_map_width)
+      || (this.x1 < 0 && this.x2 < 0) ){
+        console.log("TED");
+        this.x1 -= Math.sign(this.x1) * this.graphics.hexagon_map_width;
+        this.x2 -= Math.sign(this.x2) * this.graphics.hexagon_map_width;
+      }
+    }
+
     update(translate_vector){
 
         var k = 1;
         this.x1 += Math.round(k * translate_vector[0]);
-        this.y1 += Math.round(k * translate_vector[1]);
+        this.y1 += Math.round(k * translate_vector[1]); //pridat k y hranici kdy ne!
         this.recalcSecondaryCoord();
+        this.transformToCyclic();
 
-        var coord_matrix = [[this.x1, this.y1],
-                        [this.x2, this.y2]];
+        var map_w = this.graphics.hexagon_map_width;
 
-        this.graphics.render(coord_matrix);
+        if(this.x1 < map_w  && this.x2 < map_w && this.x1 > 0 && this.x2 > 0){
+          var coord_matrix = [[this.x1, this.y1],
+                              [this.x2, this.y2]];
+          this.graphics.render(coord_matrix);
+
+        }else if(this.x1 < 0){
+
+          var coord_matrix_1 = [[this.x1 + map_w, this.y1],
+                                [map_w, this.y2]];
+          var coord_matrix_2 = [[0, this.y1],
+                                [this.x2, this.y2]]
+          this.graphics.render(coord_matrix_1, coord_matrix_2);
+
+
+        }else if(this.x2 > map_w){
+
+          var coord_matrix_1 = [[this.x1, this.y1],
+                                [map_w, this.y2]];
+          var coord_matrix_2 = [[0, this.y1],
+                                [this.x2 - map_w, this.y2]]
+          this.graphics.render(coord_matrix_1, coord_matrix_2);
+
+
+        }else{console.log("???")}
+
+
     }
 
 }

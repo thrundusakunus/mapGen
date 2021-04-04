@@ -4,6 +4,8 @@ MOŽNÉ BUGOVÁNÍ
 UNSOLVED
 
 6# Obcas se generace ostrova zasekne (hlavne pro extremy indentation)
+7# Svet neni kulaty (otacenim mapy nelze znovu videt ostrov)
+8# Lze otacet i pri prekroceni hranic y
 
 SOLVED
 1#  Ostrov se rozstepuje na mensi ostrovy pro indentation -> 1 a vysoka n_tiles
